@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 20:29:51
+ * @LastEditTime: 2020-09-14 20:36:52
  */
 package models
 
@@ -28,7 +28,7 @@ func InsertUser(user User) (id int64, err error) {
 	id = user.Id
 	if result.Error != nil {
 		err = result.Error
-		return 0, err
+		return
 	}
-	return id, nil
+	return
 }
