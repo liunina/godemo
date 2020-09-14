@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 22:35:18
+ * @LastEditTime: 2020-09-14 22:51:10
  */
 package controllers
 
@@ -31,6 +31,14 @@ func Register(w http.ResponseWriter, r *http.Request) {
 			helper.Response{Code: http.StatusBadRequest, Msg: "bad params"})
 		return
 	}
+
+	existId, err := user.Check()
+	if existId > 0 {
+		helper.ResponseWithJson(w, http.StatusBadRequest,
+			helper.Response{Code: http.StatusBadRequest, Msg: "user is exist!!"})
+		return
+	}
+
 	id, err := user.Insert()
 	if err != nil {
 		helper.ResponseWithJson(w, http.StatusInternalServerError,
