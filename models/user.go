@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 23:14:26
+ * @LastEditTime: 2020-09-14 23:20:03
  */
 package models
 
@@ -43,7 +43,7 @@ func (user User) Insert() (id int64, err error) {
 	fmt.Println("checking")
 	fmt.Println(existId)
 	fmt.Println(err0)
-	if err == nil || existId > 0 {
+	if err0 == nil || existId > 0 {
 		err = err0
 		fmt.Println("checking failed")
 		return
