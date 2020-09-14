@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 17:49:14
+ * @LastEditTime: 2020-09-14 18:09:06
  */
 package controllers
 
@@ -38,8 +38,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		helper.ResponseWithJson(w, http.StatusBadRequest,
 			helper.Response{Code: http.StatusBadRequest, Msg: "bad params"})
 	}
-	// exist := models.IsExist(db, collection, bson.M{"username": user.UserName})
-
 	var exist = false
 
 	if exist {
