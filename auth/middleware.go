@@ -11,7 +11,7 @@ import (
 
 func GenerateToken(user *models.User) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"username": user.UserName,
+		"username": user.Username,
 		//"exp":      time.Now().Add(time.Hour * 2).Unix(),
 	})
 
