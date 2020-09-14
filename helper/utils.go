@@ -1,12 +1,13 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 21:23:00
+ * @LastEditTime: 2020-09-14 21:48:35
  */
 package helper
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -24,10 +25,10 @@ func ResponseWithJson(w http.ResponseWriter, code int, payload interface{}) {
 }
 
 type BusError struct {
-	code int
-	s    string
+	Code    int
+	Message string
 }
 
-func (be *BusError) Error() string {
-	return "文件错误"
+func (e *BusError) Error() string {
+	return fmt.Sprintf("%d: %s", e.Code, e.Message)
 }

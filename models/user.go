@@ -1,13 +1,11 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 21:17:29
+ * @LastEditTime: 2020-09-14 21:46:11
  */
 package models
 
 import (
-	"errors"
-
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
@@ -26,33 +24,34 @@ type JwtToken struct {
 var Users []User
 
 // 检测查询
-func (user User) Check() (id int64, err error) {
+func (user User) Check() (id int64, err BusError) {
 	result := DB.Where("username = ?", user.Username).First(&user)
 	id = user.Id
 	if result.Error != nil {
-		err = result.Error
+		err = &BusError(-1, "发送错误")
 		return
 	}
 	return
 }
 
 //添加
-func (user User) Insert() (id int64, err error) {
+func (user User) Insert() (id int64, err BusError) {
 	id, err0 := user.Check()
 	if err0 != nil {
-		err = err0
+		err = &BusError(-1, "发送错误")
 		return
 	}
 
 	if id > 0 {
-		return errors.New("message: user is exist!")
+		err = &BusError(-1, "发送错误")
+		return
 	}
 
 	//添加数据
 	result := DB.Create(&user) //创建对象
 	id = user.Id
 	if result.Error != nil {
-		err = result.Error
+		err = &BusError(-1, "发送错误")
 		return
 	}
 	return
