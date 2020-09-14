@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 21:51:17
+ * @LastEditTime: 2020-09-14 22:28:52
  */
 package controllers
 
@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/liunina/godemo/auth"
 	"github.com/liunina/godemo/helper"
@@ -63,4 +64,28 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		helper.ResponseWithJson(w, http.StatusNotFound,
 			helper.Response{Code: http.StatusNotFound, Msg: "the user not exist"})
 	}
+}
+
+func UserInfo(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query()
+	queryId := query.Get("id")
+	var id int64 = 0
+	if id, err := strconv.Atoi(queryId); err == nil {
+		var user models.User
+		user.Id = id
+
+		userInfo, err := user.FindId()
+		if err != nil {
+			helper.ResponseWithJson(w, http.StatusInternalServerError,
+				helper.Response{Code: http.StatusInternalServerError, Msg: "internal error"})
+		} else {
+			helper.ResponseWithJson(w, http.StatusBadRequest,
+				helper.Response{Code: http.StatusOK, Data: &userInfo})
+		}
+	} else {
+		helper.ResponseWithJson(w, http.StatusBadRequest,
+			helper.Response{Code: http.StatusBadRequest, Msg: "bad params"})
+		return
+	}
+
 }

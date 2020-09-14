@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 22:03:07
+ * @LastEditTime: 2020-09-14 22:19:39
  */
 package models
 
@@ -53,5 +53,16 @@ func (user User) Insert() (id int64, err error) {
 		err = result.Error
 		return
 	}
+	return
+}
+
+func (user User) FindId() (userInfo User, err error) {
+	result := DB.Where("id = ?", user.Id).First(&user)
+
+	if result.Error != nil {
+		err = result.Error
+		return
+	}
+	userInfo = user
 	return
 }

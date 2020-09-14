@@ -1,11 +1,12 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 18:31:55
+ * @LastEditTime: 2020-09-14 22:06:34
  */
 package routes
 
 import (
+	"cmd/go/internal/auth"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -22,6 +23,7 @@ type Route struct {
 var routes []Route
 
 func init() {
+	register("GET", "/user", controllers.UserInfo, auth.TokenMiddleware)
 	register("POST", "/user/register", controllers.Register, nil)
 	register("POST", "/user/login", controllers.Login, nil)
 }
