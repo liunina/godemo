@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-09-14 17:40:07
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 20:54:30
+ * @LastEditTime: 2020-09-14 20:55:49
  */
 
 package models
@@ -40,5 +40,5 @@ func init() {
 		fmt.Println("create table success")
 	}
 
-	defer DB.Close()
+	// defer DB.Close()
 }
