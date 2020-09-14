@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 22:55:17
+ * @LastEditTime: 2020-09-14 23:11:44
  */
 package controllers
 
@@ -33,7 +33,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	existId, err := user.Check()
-	if existId > 0 {
+	if existId > 0 || err == nil {
 		helper.ResponseWithJson(w, http.StatusBadRequest,
 			helper.Response{Code: http.StatusBadRequest, Msg: "user is exist!!"})
 		return

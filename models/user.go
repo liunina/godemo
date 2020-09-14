@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 23:08:30
+ * @LastEditTime: 2020-09-14 23:14:26
  */
 package models
 
@@ -38,12 +38,13 @@ func (user User) Check() (id int64, err error) {
 
 //添加
 func (user User) Insert() (id int64, err error) {
-	existId, err := user.Check()
+	existId, err0 := user.Check()
 
 	fmt.Println("checking")
 	fmt.Println(existId)
-	fmt.Println(err)
+	fmt.Println(err0)
 	if err == nil || existId > 0 {
+		err = err0
 		fmt.Println("checking failed")
 		return
 	}
@@ -51,8 +52,10 @@ func (user User) Insert() (id int64, err error) {
 	//添加数据
 	result := DB.Create(&user) //创建对象
 	id = user.Id
+	fmt.Println("Creating")
 	if result.Error != nil {
 		err = result.Error
+		fmt.Println(err)
 		return
 	}
 	return
