@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 20:48:50
+ * @LastEditTime: 2020-09-14 21:25:46
  */
 package controllers
 
@@ -49,7 +49,12 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 	// exist := models.IsExist(db, collection, bson.M{"username": user.UserName})
 
+	id, err := user.Check()
+
 	var exist = false
+	if id > 0 {
+		exist = true
+	}
 
 	if exist {
 		token, _ := auth.GenerateToken(&user)

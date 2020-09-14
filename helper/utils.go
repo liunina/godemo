@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 18:18:57
+ * @LastEditTime: 2020-09-14 21:23:00
  */
 package helper
 
@@ -21,4 +21,13 @@ func ResponseWithJson(w http.ResponseWriter, code int, payload interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
 	w.Write(response)
+}
+
+type BusError struct {
+	code int
+	s    string
+}
+
+func (be *BusError) Error() string {
+	return "文件错误"
 }
