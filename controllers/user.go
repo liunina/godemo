@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 22:28:52
+ * @LastEditTime: 2020-09-14 22:35:18
  */
 package controllers
 
@@ -70,7 +70,9 @@ func UserInfo(w http.ResponseWriter, r *http.Request) {
 	query := r.URL.Query()
 	queryId := query.Get("id")
 	var id int64 = 0
-	if id, err := strconv.Atoi(queryId); err == nil {
+
+	id, err := strconv.ParseInt(queryId, 10, 64)
+	if err == nil {
 		var user models.User
 		user.Id = id
 
