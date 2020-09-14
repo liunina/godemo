@@ -1,11 +1,13 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 23:05:11
+ * @LastEditTime: 2020-09-14 23:08:30
  */
 package models
 
 import (
+	"fmt"
+
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
@@ -37,7 +39,12 @@ func (user User) Check() (id int64, err error) {
 //添加
 func (user User) Insert() (id int64, err error) {
 	existId, err := user.Check()
+
+	fmt.Println("checking")
+	fmt.Println(existId)
+	fmt.Println(err)
 	if err == nil || existId > 0 {
+		fmt.Println("checking failed")
 		return
 	}
 
