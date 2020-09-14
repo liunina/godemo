@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 23:00:55
+ * @LastEditTime: 2020-09-14 23:05:11
  */
 package models
 
@@ -37,7 +37,7 @@ func (user User) Check() (id int64, err error) {
 //添加
 func (user User) Insert() (id int64, err error) {
 	existId, err := user.Check()
-	if err != nil || existId > 0 {
+	if err == nil || existId > 0 {
 		return
 	}
 
