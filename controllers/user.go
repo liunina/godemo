@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 20:29:59
+ * @LastEditTime: 2020-09-14 20:31:29
  */
 package controllers
 
@@ -27,7 +27,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 			helper.Response{Code: http.StatusBadRequest, Msg: "bad params"})
 		return
 	}
-	uid, err := models.InsertUser(user)
+	err := models.InsertUser(user)
 	if err != nil {
 		helper.ResponseWithJson(w, http.StatusInternalServerError,
 			helper.Response{Code: http.StatusInternalServerError, Msg: "internal error"})
