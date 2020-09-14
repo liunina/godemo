@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 17:29:25
+ * @LastEditTime: 2020-09-14 17:35:56
  */
 package controllers
 
@@ -9,7 +9,6 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/globalsign/mgo/bson"
 	"github.com/liunina/godemo/auth"
 	"github.com/liunina/godemo/helper"
 	"github.com/liunina/godemo/models"
@@ -28,11 +27,13 @@ func Register(w http.ResponseWriter, r *http.Request) {
 			helper.Response{Code: http.StatusBadRequest, Msg: "bad params"})
 		return
 	}
-	err = models.Insert(db, collection, user)
-	if err != nil {
-		helper.ResponseWithJson(w, http.StatusInternalServerError,
-			helper.Response{Code: http.StatusInternalServerError, Msg: "internal error"})
-	}
+	helper.ResponseWithJson(w, http.StatusInternalServerError,
+		helper.Response{Code: http.StatusInternalServerError, Msg: "internal error"})
+	// err = models.Insert(db, collection, user)
+	// if err != nil {
+	// 	helper.ResponseWithJson(w, http.StatusInternalServerError,
+	// 		helper.Response{Code: http.StatusInternalServerError, Msg: "internal error"})
+	// }
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
@@ -42,7 +43,10 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		helper.ResponseWithJson(w, http.StatusBadRequest,
 			helper.Response{Code: http.StatusBadRequest, Msg: "bad params"})
 	}
-	exist := models.IsExist(db, collection, bson.M{"username": user.UserName})
+	// exist := models.IsExist(db, collection, bson.M{"username": user.UserName})
+
+	var exist = false
+
 	if exist {
 		token, _ := auth.GenerateToken(&user)
 		helper.ResponseWithJson(w, http.StatusOK,
