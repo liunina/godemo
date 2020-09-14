@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 17:35:56
+ * @LastEditTime: 2020-09-14 17:49:14
  */
 package controllers
 
@@ -29,11 +29,6 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	}
 	helper.ResponseWithJson(w, http.StatusInternalServerError,
 		helper.Response{Code: http.StatusInternalServerError, Msg: "internal error"})
-	// err = models.Insert(db, collection, user)
-	// if err != nil {
-	// 	helper.ResponseWithJson(w, http.StatusInternalServerError,
-	// 		helper.Response{Code: http.StatusInternalServerError, Msg: "internal error"})
-	// }
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
