@@ -1,12 +1,13 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 21:46:11
+ * @LastEditTime: 2020-09-14 21:58:44
  */
 package models
 
 import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"github.com/liunina/godemo/helper"
 )
 
 //user表结构体定义
@@ -24,26 +25,26 @@ type JwtToken struct {
 var Users []User
 
 // 检测查询
-func (user User) Check() (id int64, err BusError) {
+func (user User) Check() (id int64, err helper.BusError) {
 	result := DB.Where("username = ?", user.Username).First(&user)
 	id = user.Id
 	if result.Error != nil {
-		err = &BusError(-1, "发送错误")
+		err = &helper.BusError(-1, "发送错误")
 		return
 	}
 	return
 }
 
 //添加
-func (user User) Insert() (id int64, err BusError) {
+func (user User) Insert() (id int64, err helper.BusError) {
 	id, err0 := user.Check()
 	if err0 != nil {
-		err = &BusError(-1, "发送错误")
+		err = &helper.BusError(-1, "发送错误")
 		return
 	}
 
 	if id > 0 {
-		err = &BusError(-1, "发送错误")
+		err = &helper.BusError(-1, "发送错误")
 		return
 	}
 
@@ -51,7 +52,7 @@ func (user User) Insert() (id int64, err BusError) {
 	result := DB.Create(&user) //创建对象
 	id = user.Id
 	if result.Error != nil {
-		err = &BusError(-1, "发送错误")
+		err = &helper.BusError(-1, "发送错误")
 		return
 	}
 	return
