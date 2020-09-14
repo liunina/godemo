@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 17:49:14
+ * @LastEditTime: 2020-09-14 18:25:26
  */
 package controllers
 
@@ -22,7 +22,7 @@ const (
 func Register(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 	err := json.NewDecoder(r.Body).Decode(&user)
-	if err != nil || user.UserName == "" || user.Password == "" {
+	if err != nil || user.Username == "" || user.Password == "" {
 		helper.ResponseWithJson(w, http.StatusBadRequest,
 			helper.Response{Code: http.StatusBadRequest, Msg: "bad params"})
 		return
