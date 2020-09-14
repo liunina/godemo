@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 20:36:52
+ * @LastEditTime: 2020-09-14 20:38:32
  */
 package models
 
@@ -22,7 +22,8 @@ type JwtToken struct {
 }
 
 //添加
-func InsertUser(user User) (id int64, err error) {
+func (user User) Insert() (id int64, err error) {
+
 	//添加数据
 	result := DB.Create(&user) //创建对象
 	id = user.Id

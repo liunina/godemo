@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 20:33:34
+ * @LastEditTime: 2020-09-14 20:42:20
  */
 package controllers
 
@@ -27,10 +27,13 @@ func Register(w http.ResponseWriter, r *http.Request) {
 			helper.Response{Code: http.StatusBadRequest, Msg: "bad params"})
 		return
 	}
-	_, err := models.InsertUser(user)
+	id, err := user.Insert()
 	if err != nil {
 		helper.ResponseWithJson(w, http.StatusInternalServerError,
 			helper.Response{Code: http.StatusInternalServerError, Msg: "internal error"})
+	} else {
+		helper.ResponseWithJson(w, http.StatusBadRequest,
+			helper.Response{Code: http.StatusOK, Data: id})
 	}
 }
 
