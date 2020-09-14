@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 22:51:10
+ * @LastEditTime: 2020-09-14 22:55:17
  */
 package controllers
 
@@ -40,12 +40,13 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	id, err := user.Insert()
+	fmt.Println(id)
 	if err != nil {
 		helper.ResponseWithJson(w, http.StatusInternalServerError,
 			helper.Response{Code: http.StatusInternalServerError, Msg: "internal error"})
 	} else {
 		helper.ResponseWithJson(w, http.StatusBadRequest,
-			helper.Response{Code: http.StatusOK, Data: id})
+			helper.Response{Code: http.StatusOK, Data: &user})
 	}
 }
 
