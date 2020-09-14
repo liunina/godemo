@@ -1,7 +1,7 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 18:31:21
+ * @LastEditTime: 2020-09-14 19:00:33
  */
 package main
 
@@ -14,5 +14,5 @@ import (
 func main() {
 	r := routes.NewRouter()
 
-	http.ListenAndServe(":8080", r)
+	http.ListenAndServe(":8081", r)
 }
