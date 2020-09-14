@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-09-14 17:40:07
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 18:33:53
+ * @LastEditTime: 2020-09-14 20:54:30
  */
 
 package models
@@ -29,7 +29,7 @@ func init() {
 
 	conn := fmt.Sprintf("%s:%s@%s(%s:%d)/%s", USERNAME, PASSWORD, NETWORK, SERVER, PORT, DATABASE)
 	var err error
-	DB, err := gorm.Open("mysql", conn)
+	DB, err = gorm.Open("mysql", conn)
 	if err != nil {
 		fmt.Println("failed to connect database:", err)
 		return

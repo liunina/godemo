@@ -1,12 +1,13 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 20:42:20
+ * @LastEditTime: 2020-09-14 20:48:50
  */
 package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/liunina/godemo/auth"
@@ -21,6 +22,8 @@ const (
 
 func Register(w http.ResponseWriter, r *http.Request) {
 	var user models.User
+	var jsonStr = json.NewDecoder(r.Body)
+	fmt.Println(jsonStr)
 	err := json.NewDecoder(r.Body).Decode(&user)
 	if err != nil || user.Username == "" || user.Password == "" {
 		helper.ResponseWithJson(w, http.StatusBadRequest,
