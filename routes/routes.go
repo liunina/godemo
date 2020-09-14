@@ -1,13 +1,14 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 22:06:34
+ * @LastEditTime: 2020-09-14 22:31:19
  */
 package routes
 
 import (
-	"cmd/go/internal/auth"
 	"net/http"
+
+	"github.com/liunina/godemo/auth"
 
 	"github.com/gorilla/mux"
 	"github.com/liunina/godemo/controllers"
