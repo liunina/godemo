@@ -1,13 +1,14 @@
 /*
  * @Date: 2018-07-17 19:37:32
  * @LastEditors: liunian
- * @LastEditTime: 2020-09-14 23:11:44
+ * @LastEditTime: 2020-09-15 10:24:15
  */
 package controllers
 
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -58,6 +59,11 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			helper.Response{Code: http.StatusBadRequest, Msg: "bad params"})
 	}
 
+	jsons, errs := json.Marshal(user) //转换成JSON返回的是byte[]
+	if errs != nil {
+		log.Println(errs.Error())
+	}
+	log.Println("Login:" + string(jsons))
 	id, err := user.Check()
 
 	var exist = false

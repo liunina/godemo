@@ -1,0 +1,2 @@
+2020/09/15 10:18:06.316288 /Users/liunian/Workspace/Golang/godemo/app.go:25: 这是一条很普通的日志。
+[前缀信息]2020/09/15 10:18:06.316486 /Users/liunian/Workspace/Golang/godemo/app.go:27: 这是一条很普通的日志。

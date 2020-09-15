@@ -3,6 +3,7 @@ package auth
 import (
 	"fmt"
 	"net/http"
+	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/liunina/godemo/helper"
@@ -12,7 +13,7 @@ import (
 func GenerateToken(user *models.User) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"username": user.Username,
-		//"exp":      time.Now().Add(time.Hour * 2).Unix(),
+		"exp":      time.Now().Add(time.Hour * 2).Unix(),
 	})
 
 	return token.SignedString([]byte("secret"))
